@@ -17,29 +17,45 @@ logoFile="modpicture.png"
 authors="IlikeHello47"
 
 description='''
-A extremly complex Stormchasing Mod made to be compactable with Sable.
+An advanced, modular high-fidelity severe weather and meteorology mod.
+Engineering vehicle attachments like side-spikes, anchors, and airbag suspensions to intercept and track catastrophic tornadoes!
+Also made to be compactable with Sable.
 '''
 
 # The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.
 #[[mixins]]
-#config="${mod_id}.mixins.json"
+#config="stormchasersdream.mixins.json"
 
 # The [[accessTransformers]] block allows you to declare where your AT file is.
 # If this block is omitted, a fallback attempt will be made to load an AT from META-INF/accesstransformer.cfg
 #[[accessTransformers]]
 #file="META-INF/accesstransformer.cfg"
 
-[[dependencies.${mod_id}]]
+[[dependencies.stormchasersdream]]
     modId="neoforge"
     type="required"
-    versionRange="[${neo_version},)"
+    versionRange="${neo_version}"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.${mod_id}]]
+[[dependencies.stormchasersdream]]
     modId="minecraft"
     type="required"
     versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.stormchasersdream]]
+    modId="create"
+    type="required"
+    versionRange="[6.0.10,6.1.0)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.stormchasersdream]]
+    modId="sable"
+    type="required"
+    versionRange="[1.2.2,)"
     ordering="NONE"
     side="BOTH"
 

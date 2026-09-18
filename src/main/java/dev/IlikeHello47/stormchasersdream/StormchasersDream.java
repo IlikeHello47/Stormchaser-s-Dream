@@ -1,5 +1,7 @@
 package dev.IlikeHello47.stormchasersdream;
 
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import org.slf4j.Logger;
 import com.mojang.logging.LogUtils;
 import net.neoforged.bus.api.IEventBus;
@@ -20,9 +22,15 @@ public class StormchasersDream {
         modEventBus.addListener(this::commonSetup);
         NeoForge.EVENT_BUS.register(this);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        modEventBus.addListener(this::registerNetworking);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
+
+    }
+
+    private void registerNetworking(final RegisterPayloadHandlersEvent event) {
+        final PayloadRegistrar registrar = event.registrar("stormchasersdream");
     }
 
     @SubscribeEvent

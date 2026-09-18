@@ -1,7 +1,11 @@
 {
-  "itemGroup.stormchasersdream": "Stormchaser's Dream",
+  "key.stormchasersdream.radar": "Toggle Weather Radar",
+  "key.categories.stormchasersdream": "Stormchaser's Dream",
 
-  "stormchasersdream.configuration.title": "Stormchaser's Dream Mod Configs",
-  "stormchasersdream.configuration.section.stormchasersdream.common.toml": "Storm haser's Dream Config",
-  "stormchasersdream.configuration.section.stormchasersdream.common.toml.title": "Stormchaser's Dream Config"
+  "hud.stormchasersdream.wind_speed_mph": "Wind: %d mp/h",
+  "hud.stormchasersdream.wind_speed_kmh": "Wind: %d km/h",
+
+  "radar.stormchasersdream.core": "Core",
+  "radar.stormchasersdream.gusts": "Gusts",
+  "radar.stormchasersdream.rain": "Rain"
 }

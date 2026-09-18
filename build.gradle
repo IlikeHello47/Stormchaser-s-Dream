@@ -1,13 +1,56 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
-    id 'net.neoforged.moddev' version '2.0.147'
+    id 'net.neoforged.moddev' version '2.0.144'
     id 'idea'
 }
 
 tasks.named('wrapper', Wrapper).configure {
     distributionType = Wrapper.DistributionType.BIN
 }
+
+repositories {
+    maven { url = "https://maven.ryanhcode.dev/releases"}
+    maven { url = "https://maven.createmod.net"}
+    maven { url = "https://maven.ithundxr.dev/snapshots"}
+    maven {
+        name = 'BlameJared Maven (CrT / Bookshelf)'
+        url = 'https://maven.blamejared.com'
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                url = "https://maven.ryanhcode.dev/releases"
+                name = "RyanHCode Maven"
+            }
+        }
+        filter {
+            includeGroup("dev.ryanhcode.sable")
+            includeGroup("dev.ryanhcode.sable-companion")
+        }
+    }
+    maven {
+        name = "Fuzs Mod Resources"
+        url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
+    }
+    maven {
+        name = "Modrinth"
+        url = "https://modrinth.com"
+    }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
+}
+
+
 
 version = mod_version
 group = mod_group_id
@@ -16,11 +59,29 @@ sourceSets.main.resources {
     srcDir('src/generated/resources')
 
     exclude("**/*.bbmodel")
+
     exclude("src/generated/**/.cache")
 }
 
-repositories {
+dependencies {
+    implementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
+    implementation("net.createmod.ponder:ponder-neoforge:${ponder_version}+mc${minecraft_version}")
+    compileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-${minecraft_version}:${flywheel_version}")
+    runtimeOnly("dev.engine-room.flywheel:flywheel-neoforge-${minecraft_version}:${flywheel_version}")
+    implementation("com.tterrag.registrate:Registrate:${registrate_version}")
+    api("dev.ryanhcode.sable:sable-common-${project.minecraft_version}:${project.sable_version}") {
+        exclude group: "foundry.veil"
+    }
+    implementation("foundry.veil:veil-neoforge-${project.minecraft_version}:${project.veil_version}") {
+        exclude group: "maven.modrinth"
+        exclude group: "me.fallenbreath"
+    }
+    implementation("foundry.imguimc:imguimc-neoforge-${project.minecraft_version}:${project.imguimc_version}")
+    implementation("maven.modrinth:oWaK0Q19:44pLdPGg")
 }
+
+
+
 
 base {
     archivesName = mod_id
@@ -40,6 +101,7 @@ neoForge {
         client {
             client()
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+            programArguments.addAll('--username', 'IlikeHello47', '--uuid', '552b2154-c0bf-416f-8e35-58c2c8db788d')
         }
 
         server {
@@ -47,7 +109,6 @@ neoForge {
             programArgument '--nogui'
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }
-
         gameTestServer {
             type = "gameTestServer"
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
@@ -60,6 +121,7 @@ neoForge {
 
         configureEach {
             systemProperty 'forge.logging.markers', 'REGISTRIES'
+
             logLevel = org.slf4j.event.Level.DEBUG
         }
     }
@@ -75,8 +137,6 @@ configurations {
     runtimeClasspath.extendsFrom localRuntime
 }
 
-dependencies {
-}
 
 var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
     var replaceProperties = [
