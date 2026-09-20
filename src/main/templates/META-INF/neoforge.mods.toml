@@ -59,3 +59,23 @@ Also made to be compactable with Sable.
     ordering="NONE"
     side="BOTH"
 
+[[dependencies.stormchasersdream]]
+    modId="simulated"
+    type="optional"
+    versionRange="[1.0.0,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.stormchasersdream]]
+    modId="aeronautics"
+    type="optional"
+    versionRange="[1.0.0,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.stormchasersdream]]
+    modId="offroad"
+    type="optional"
+    versionRange="[1.0.0,)"
+    ordering="NONE"
+    side="BOTH"

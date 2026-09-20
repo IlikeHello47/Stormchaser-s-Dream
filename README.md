@@ -1,9 +1,9 @@
 # 🌪️ Stormchasers Dream
 
 <p align="center">
-  <img src="https://shields.io" alt="Minecraft Version">
-  <img src="https://shields.io" alt="Mod Loader">
-  <img src="https://shields.io" alt="License">
+  <img src="https://img.shields.io/badge/NeoForged-1.21.1-blue">
+  <img src="https://img.shields.io/badge/Mod%20Version-1.0.0-red">
+  <img src=https://img.shields.io/badge/progress-3%25-orange">
 </p>
 
 ---

@@ -1,5 +1,8 @@
 package dev.IlikeHello47.stormchasersdream;
 
+import dev.IlikeHello47.stormchasersdream.creative_tab.Main;
+import dev.IlikeHello47.stormchasersdream.items.Airbag;
+import net.minecraft.resources.ResourceLocation;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import org.slf4j.Logger;
@@ -22,19 +25,19 @@ public class StormchasersDream {
         modEventBus.addListener(this::commonSetup);
         NeoForge.EVENT_BUS.register(this);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-        modEventBus.addListener(this::registerNetworking);
+        Airbag.register(modEventBus);
+        Main.register(modEventBus);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
-
-    }
-
-    private void registerNetworking(final RegisterPayloadHandlersEvent event) {
-        final PayloadRegistrar registrar = event.registrar("stormchasersdream");
     }
 
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         LOGGER.info("HELLO from server starting");
+    }
+
+    public static ResourceLocation path(final String path) {
+        return ResourceLocation.tryBuild(MODID, path);
     }
 }
